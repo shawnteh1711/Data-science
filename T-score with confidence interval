@@ -1,0 +1,23 @@
+#Q23
+
+"""
+Calculate the t scores of 95% confidence interval, 
+96% confidence interval, 
+99% confidence interval 
+for sample size of 25
+"""
+n <- 25
+
+#t scores of 95% confidence interval
+#value of t with 2.5% in each tail
+
+t_95 <- qt(p=0.025, df=n, lower.tail = TRUE)
+
+#t scores of 96% confidence interval
+#value of t with 2% in each tail
+t_96 <- qt(p=0.02, df=n, lower.tail = TRUE)
+
+#t scores of 99% confidence interval
+#value of t with 0.5% in each tail
+t_99 <- qt(p=0.005, df=n, lower.tail = TRUE)
+
