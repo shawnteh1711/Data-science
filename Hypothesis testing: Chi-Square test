@@ -1,0 +1,19 @@
+#Hypothesis testing:Chi-Square test
+"
+Sales of products in four different regions is tabulated for males and females. 
+Find if male-female buyer rations are similar across regions.
+"
+
+data <- read.csv(file.choose())
+attach(data)
+View(data)
+data_1 <- t(data[,-1]) #transpose the data frame
+#rename the dimension of objects
+dimnames(data_1) <- list(Region = rownames(data_1), Observed = c('male', 'female')) 
+
+######Chi-Square test######
+#Ho: male-female buyer rations are similar across regions
+#Ha: male-female buyer rations are different across regions
+chisq.test(data_1)   
+# p-value = 0.66 > 0.05, so p high null fly => male-female buyer rations are similar 
+#across regions
