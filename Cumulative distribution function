@@ -1,0 +1,22 @@
+#Q20 calculate cumulative distribution function
+
+x <- read.csv(file.choose())
+attach(x)
+describe(x)
+#mean MPG = 34.42
+#sd MPG = 9.13
+
+mean_MPG <- mean(MPG)
+sd_MPG <- sd(MPG)
+
+
+#a,  calculate probability of  P(mpg>38) 
+MPG_38 <- 1 - pnorm(38, mean_MPG, sd_MPG)
+
+#b. calculate probability of  P(MPG<40)
+mpg_40 <- pnorm(40, mean_MPG, sd_MPG)
+
+#c, calculate probability of  P(20<MPG<50)
+mpg_50  <- pnorm(50, mean_MPG, sd_MPG)
+mpg_20  <- pnorm(20, mean_MPG, sd_MPG)
+mpg_20_50 <- mpg_50 - mpg_20
