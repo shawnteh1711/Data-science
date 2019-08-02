@@ -1,0 +1,33 @@
+#Hypothesis testing: 2-sample T test
+
+#1 A F&B manager wants to determine whether there is any significant difference 
+#in the diameter of the cutlet between two units. 
+#A randomly selected sample of cutlets was collected from both units and measured? 
+#Analyze the data and draw inferences at 5% significance level. 
+#Please state the assumptions and tests that you carried out to check validity 
+#of the assumptions.
+
+#read file
+data <- read.csv(file.choose())
+attach(data)
+View(data)
+
+#####normality test######
+#Ho: data are normal
+#Ha: data are non-normal
+shapiro.test(Unit.A)
+# p-value = 0.32 > 0.05, so p high null fly => data follow normal distribution
+shapiro.test(Unit.B)
+# p-value = 0.52 > 0.05, so p high null fly => data follow normal distribution
+
+#####variance test#####
+#Ho: Variance are same
+#Ha: variance are diferent
+var.test(Unit.A,Unit.B)
+# p-value = 0.31 > 0.05 so p high null fly => Equal variance
+
+#####2-sample T test #####
+#Ho: Average diameter are same
+#Ha: Average diameter are different
+t.test(Unit.A, Unit.B, alternative = "two.sided", conf.level = 0.95, correct = TRUE)
+# p-value = 0.47 > 0.05, so p high null fly => Average diameter are same
