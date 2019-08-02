@@ -1,0 +1,16 @@
+#Q21 create histogram from dataset
+
+#a
+cars <- read.csv(file.choose())
+library(readr)
+attach(cars)
+View(cars)
+hist(MPG)
+
+
+#b
+wc_at <- read.csv(file.choose())
+attach(wc_at)
+View(wc_at)
+hist(Waist)
+hist(AT)
