@@ -1,0 +1,42 @@
+"Hypothesis testing: ANOVA
+2. A hospital wants to determine whether there is any difference in the average Turn Around Time (TAT) 
+of reports of the laboratories on their preferred list. They collected a random sample and recorded TAT 
+for reports of 4 laboratories. TAT is defined as sample collected to report dispatch.
+Analyze the data and determine whether there is any difference in average TAT among 
+the different laboratories at 5% significance level.
+"
+
+
+data <- read.csv(file.choose())
+attach(data)
+View(data)
+
+#####normality test######
+#Ho: data are normal
+#Ha: data are non-normal
+shapiro.test(Laboratory.1) #0.55
+shapiro.test(Laboratory.2) #0.86
+shapiro.test(Laboratory.3) #0.42
+shapiro.test(Laboratory.4) #0.66
+# p-value > 0.05, so p high null fly => data follow normal distributed
+
+#####variance test######
+#Ho: variance are equal
+#Ha: variance are different
+var.test(Laboratory.1, Laboratory.2) #0.17
+var.test(Laboratory.2, Laboratory.3) #0.27
+var.test(Laboratory.3, Laboratory.4) #0.32
+var.test(Laboratory.4, Laboratory.1) #0.14
+# p-value > 0.05 , so p high null fly => variance are equal
+
+Stacked_data <- stack(data)
+View(Stacked_data)
+attach(Stacked_data)
+colnames(Stacked_data)
+
+#####ANOVA TEST#####
+#Ho: TAT of all 4 laboratories is the same
+#Ha: TAT of at least one laboratories is different
+Anova_results <- aov(values ~ ind, data = Stacked_data)
+summary(Anova_results)
+# p-value < 0.05, p low null go -> TAT of at least one laboratories is different
