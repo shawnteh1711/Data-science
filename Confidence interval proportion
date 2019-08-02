@@ -1,0 +1,16 @@
+#set5 Confidence interval proportion
+#5. According to Money, 60% of men have significant balding by age 50.
+#If this finding is based on a random sample of 1,000 men of age 50, 
+#give a 95% confidence interval for the proportion of men of 50 who show some balding.
+
+#Confidence interval proportion = pÌ Â± z *â((p Ì(1-p Ì))/n) 
+
+
+conf <- 0.95 #confidence level
+p_value <- (1 - conf)/2
+z <- qnorm(p_value, lower.tail = FALSE)
+prop <- 0.6
+n <- 1000
+error <- z * sqrt((prop*(1-prop))/(n))
+lower <- prop - error
+upper <- prop + error                  
