@@ -1,0 +1,28 @@
+#Statistic level 2. Boxplot and outlier
+
+library(readxl)
+Q1 <- read_excel(file.choose())
+View(Q1)
+attach(Q1)
+length(Q1)
+boxplot(`Measure X`, data = Q1, horizontal = TRUE, Main = "Measure of X")
+summary(Q1)
+data <- Q1
+lapply(data, as.numeric)
+bench <- 0.34 + 1.5 * IQR(data)
+
+#find outlier
+outlier_values <- boxplot.stats(data$`Measure X`)$out  # outlier values.
+boxplot(data$`Measure X`, xlab="name of company", ylab = "measure of x", main ="distribution of measure x across company",boxwex=0.4)
+mtext(paste("Outliers: ", paste(outlier_values, collapse=", ")),cex=1.0)
+
+#label mean 
+points(1:3, means$weight, col = "red")
+text(1:3, means$weight + 0.08, labels = means$weight)
+
+library("psych")
+describe(data)
+mean <- 0.33
+sd <- 0.17
+variance <- sd*2
+print(variance) #0.34
