@@ -1,0 +1,31 @@
+#Statistic level 1 ,calcualte skewness and kurtosis from dataset 
+
+car_speed <- read.csv(file.choose())
+attach(car_speed)
+View(car_speed)
+library("psych")
+
+#get overall description
+describe(car_speed)
+
+
+#get skewness and kurtosis for speed
+skew_speed <- skewness(SP) 
+print(round(skew_speed,2))
+
+kurtosis_speed <- kurtosi(SP)
+print(round(kurtosis_speed,2))
+
+#get skewness and kurtosis for wt
+
+skew_WT <- skewness(WT) 
+print(round(skew_WT,2))
+
+kurtosis_WT <- kurtosi(WT)
+print(round(kurtosis_WT,2))
+
+#print skewness and kurtosis in table
+
+table <- data.frame(c("skewness","kurtosis"),c(skew_speed,kurtosis_speed),c(skew_WT,kurtosis_WT))
+colnames(table) <- c("measure","SP","WT")         
+View(table)
