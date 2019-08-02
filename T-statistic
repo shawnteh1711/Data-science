@@ -1,0 +1,10 @@
+#t-statistic example in R
+
+sample_mean <- 260
+population_mean <- 270
+s <- 90
+n <- 18 
+t = (sample_mean - population_mean) / (s / sqrt( n )) 
+t #-0.4714045
+
+t_statistic <- pt(t , n-1)
