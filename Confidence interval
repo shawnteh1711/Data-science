@@ -1,0 +1,16 @@
+3Confidence interval
+
+#4.	A survey of 5,250 business travelers worldwide conducted by OAG Business Travel Lifestyle 
+#indicated that 91% of business travelers consider legroom the most important in-flight feature. 
+#(Angle of seat recline and food service were second and third, respectively.) 
+#Give a 95% confidence interval for the proportion of all business travelers
+#who consider legroom the most important feature.
+
+conf <- 0.95 #confidence level
+p_value <- (1 - conf)/2 #p-value
+z <- qnorm(p_value, lower.tail = FALSE) #z-score
+prop <- 0.91 #proportion
+n <- 5250 #sample size
+error <- z * sqrt((prop*(1-prop))/(n)) #error
+lower <- prop - error #upper interval
+upper <- prop + error #lower interval
